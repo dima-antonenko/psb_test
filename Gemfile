@@ -78,6 +78,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :development, :test do
+  gem 'rswag-specs'
+end
+
 
 gem 'shoulda-matchers'
 gem 'rack-cors', require: 'rack/cors'
@@ -100,3 +104,7 @@ gem 'whenever', require: false
 gem 'blueprinter', '~> 1.0.2'
 gem 'will_paginate', '~> 3.1.0'
 gem 'factory_bot_rails'
+
+# documentation
+gem 'rswag-api'
+gem 'rswag-ui'

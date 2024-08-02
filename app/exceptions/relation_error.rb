@@ -1,0 +1,2 @@
+class RelationError < BaseError
+end

@@ -1,0 +1,2 @@
+class PermissionError < BaseError
+end

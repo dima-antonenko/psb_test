@@ -1,0 +1,2 @@
+class ParamsValidationError < BaseError
+end

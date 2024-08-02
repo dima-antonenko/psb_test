@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -7,4 +10,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+
+  constraints format: :json do
+    namespace :api, defaults: { format: 'json' } do
+      namespace :v1 do
+        resources :authors
+        resources :courses
+        resources :expertise
+      end
+    end
+  end
 end
