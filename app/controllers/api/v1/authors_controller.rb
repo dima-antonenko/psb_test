@@ -8,8 +8,7 @@ class Api::V1::AuthorsController < ApplicationController
   end
 
   def update
-    prm = params.require(:author).permit(:username, :description, :anon)
-    result = Authors::Update.new(current_user, @author, prm, request).call
+    result = Authors::Update.new(current_user, @author, author_params, request).call
     render_item(result, serializer: 'AuthorBlueprint')
   end
 
@@ -21,7 +20,7 @@ class Api::V1::AuthorsController < ApplicationController
   private
 
   def get_author
-    @author = Author.find_by(id: params[:id])
+    @author = User.find_by(id: params[:id])
   end
 
   def author_params

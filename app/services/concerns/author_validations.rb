@@ -9,7 +9,7 @@ module AuthorValidations
   end
 
   def user_has_access_to_author?(user, author)
-    raise PermissionError.new(:user_id, 'User cant access') if author.user_id != user.id
+    raise PermissionError.new(:user_id, 'User cant access') unless user.full_access
   end
 
   def author_not_deleted?(author)

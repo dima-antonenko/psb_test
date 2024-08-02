@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :surname, length: { minimum: 2, maximum: 15 }, allow_blank: true
   validates :language, inclusion: %w[ru en]
 
+  has_paper_trail only: [:name, :surname], on: [:update]
+
   private
 
   def ensure_authentication_token

@@ -82,7 +82,7 @@ end
 def update_author(user, author_id, extra_params = nil)
   author_params = { name: 'new_name', surname: 'new_surname'}
   author_params.merge!(extra_params) if extra_params
-  patch api_v1_authors_path(author_id), params: { author: author_params }, headers: auth_headers(user)
+  patch api_v1_author_path(author_id), params: { author: author_params }, headers: auth_headers(user)
   JSON.parse(response.body)
 end
 
