@@ -15,4 +15,8 @@ module AuthorValidations
   def author_not_deleted?(author)
     raise PermissionError.new(:deleted, 'Author deleted') if !author || author.deleted
   end
+
+  def delete_himself?(user, author)
+    raise PermissionError.new(:deleted, 'User cant delete himself') if user.id == author.id
+  end
 end
