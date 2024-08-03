@@ -105,6 +105,6 @@ def update_expertise(user, expertise_id, extra_params = nil)
 end
 
 def destroy_expertise(user, expertise_id)
-  delete api_v1_author_path(expertise_id), headers: auth_headers(user)
+  delete api_v1_expertise_path(expertise_id), headers: auth_headers(user)
   JSON.parse(response.body)
 end
