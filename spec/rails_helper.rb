@@ -78,7 +78,6 @@ def create_author(user, extra_params = nil)
   JSON.parse(response.body)
 end
 
-
 def update_author(user, author_id, extra_params = nil)
   author_params = { name: 'new_name', surname: 'new_surname'}
   author_params.merge!(extra_params) if extra_params
@@ -88,5 +87,24 @@ end
 
 def destroy_author(user, author_id)
   delete api_v1_author_path(author_id), headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def create_expertise(user, extra_params = nil)
+  expertise_params = attributes_for(:expertise)
+  expertise_params.merge!(extra_params) if extra_params
+  post api_v1_expertises_path, params: { expertise: expertise_params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def expertise_author(user, expertise_id, extra_params = nil)
+  expertise_params = { title: 'new_title'}
+  expertise_params.merge!(extra_params) if extra_params
+  patch api_v1_expertise_path(expertise_id), params: { expertise: expertise_params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def destroy_expertise(user, expertise_id)
+  delete api_v1_author_path(expertise_id), headers: auth_headers(user)
   JSON.parse(response.body)
 end

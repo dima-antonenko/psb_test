@@ -1,16 +1,9 @@
 class ExpertiseBlueprint < Blueprinter::Base
   identifier :id
 
-  fields :title, :description
+  fields :title
 
-  field :course do |expertise|
-    c = expertise.course
-    if c
-      {
-        id: c.id,
-        name: c.title,
-        surname: c.description
-      }
-    end
-  end
+  # field :courses do |expertise|
+  #   Course.where('expertise_ids @> ?', expertise.id).limit(1000).select(:id, :title)
+  # end
 end
