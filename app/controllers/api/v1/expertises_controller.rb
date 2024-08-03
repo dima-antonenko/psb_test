@@ -20,7 +20,7 @@ class Api::V1::ExpertisesController < ApplicationController
   private
 
   def get_expertise
-    @expertise = User.find_by(id: params[:id])
+    @expertise = Expertise.find_by(id: params[:id])
   end
 
   def expertise_params

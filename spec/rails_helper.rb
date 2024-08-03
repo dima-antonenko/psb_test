@@ -97,7 +97,7 @@ def create_expertise(user, extra_params = nil)
   JSON.parse(response.body)
 end
 
-def expertise_author(user, expertise_id, extra_params = nil)
+def update_expertise(user, expertise_id, extra_params = nil)
   expertise_params = { title: 'new_title'}
   expertise_params.merge!(extra_params) if extra_params
   patch api_v1_expertise_path(expertise_id), params: { expertise: expertise_params }, headers: auth_headers(user)
