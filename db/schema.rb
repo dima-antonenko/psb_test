@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "coursess", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.uuid "user_id"
@@ -28,12 +28,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["deleted"], name: "index_coursess_on_deleted"
-    t.index ["description"], name: "index_coursess_on_description"
-    t.index ["disliked_user_ids"], name: "index_coursess_on_disliked_user_ids"
-    t.index ["liked_user_ids"], name: "index_coursess_on_liked_user_ids"
-    t.index ["title"], name: "index_coursess_on_title"
-    t.index ["user_id"], name: "index_coursess_on_user_id"
+    t.index ["deleted"], name: "index_courses_on_deleted"
+    t.index ["description"], name: "index_courses_on_description"
+    t.index ["disliked_user_ids"], name: "index_courses_on_disliked_user_ids"
+    t.index ["liked_user_ids"], name: "index_courses_on_liked_user_ids"
+    t.index ["title"], name: "index_courses_on_title"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "expertises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
