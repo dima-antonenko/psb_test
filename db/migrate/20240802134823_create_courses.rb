@@ -5,7 +5,7 @@ class CreateCourses < ActiveRecord::Migration[7.1]
       t.string :description, index: true
 
       t.uuid :user_id, index: true
-      t.uuid :expertises_ids,    index: true, null: false, array: true, default: []
+      t.uuid :expertise_ids,    index: true, null: false, array: true, default: []
       t.uuid :liked_user_ids,    index: true, null: false, array: true, default: []
       t.uuid :disliked_user_ids, index: true, null: false, array: true, default: []
 

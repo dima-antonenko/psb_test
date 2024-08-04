@@ -10,8 +10,9 @@ class User < ApplicationRecord
 
   before_save :ensure_authentication_token
 
-  has_many :network_logs
+
   has_many :support_requests
+  has_many :network_logs, as: :logable
   has_many :appeals, as: :appealable
   has_many :courses
 

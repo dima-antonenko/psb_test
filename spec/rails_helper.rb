@@ -108,3 +108,23 @@ def destroy_expertise(user, expertise_id)
   delete api_v1_expertise_path(expertise_id), headers: auth_headers(user)
   JSON.parse(response.body)
 end
+
+
+def create_course(user, extra_params = nil)
+  course_params = attributes_for(:course)
+  course_params.merge!(extra_params) if extra_params
+  post api_v1_courses_path, params: { course: course_params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def update_course(user, course_id, extra_params = nil)
+  course_params = { title: 'new_title'}
+  course_params.merge!(extra_params) if extra_params
+  patch api_v1_course_path(course_id), params: { course: course_params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def destroy_course(user, course_id)
+  delete api_v1_course_path(course_id), headers: auth_headers(user)
+  JSON.parse(response.body)
+end

@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.string "title"
     t.string "description"
     t.uuid "user_id"
+    t.uuid "expertise_ids", default: [], null: false, array: true
     t.uuid "liked_user_ids", default: [], null: false, array: true
     t.uuid "disliked_user_ids", default: [], null: false, array: true
     t.integer "total_views", default: 1, null: false
@@ -31,6 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.index ["deleted"], name: "index_courses_on_deleted"
     t.index ["description"], name: "index_courses_on_description"
     t.index ["disliked_user_ids"], name: "index_courses_on_disliked_user_ids"
+    t.index ["expertise_ids"], name: "index_courses_on_expertise_ids"
     t.index ["liked_user_ids"], name: "index_courses_on_liked_user_ids"
     t.index ["title"], name: "index_courses_on_title"
     t.index ["user_id"], name: "index_courses_on_user_id"

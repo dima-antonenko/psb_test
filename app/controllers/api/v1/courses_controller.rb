@@ -24,6 +24,6 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:user_id, :title, :description)
+    params.require(:course).permit(:user_id, :title, :description, expertise_ids: [])
   end
 end

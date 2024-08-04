@@ -4,7 +4,7 @@ RSpec.describe Api::V1::AuthorsController, type: :request do
 
 
   describe 'POST /api/v1/authors' do
-    context 'for review' do
+    context 'for author' do
       describe 'has access' do
         it 'not anon user can create author ' do
           json = create_author(user)

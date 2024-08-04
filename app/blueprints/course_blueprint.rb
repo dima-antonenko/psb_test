@@ -16,16 +16,16 @@ class CourseBlueprint < Blueprinter::Base
     end
   end
 
-  field :attachments do |course|
-    if course.attachments.attached?
-      course.attachments
-            .where(deleted: false).map { |a| { id: a.id,
-                                               path: Rails.application.routes.url_helpers
-                                                          .rails_blob_path(a, only_path: true) } }
-    else
-      []
-    end
-  end
+  # field :attachments do |course|
+  #   if course.attachments.attached?
+  #     course.attachments
+  #           .where(deleted: false).map { |a| { id: a.id,
+  #                                              path: Rails.application.routes.url_helpers
+  #                                                         .rails_blob_path(a, only_path: true) } }
+  #   else
+  #     []
+  #   end
+  # end
 
   field :vote_state do |course, params|
     user = params[:current_user]
