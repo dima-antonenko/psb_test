@@ -3,60 +3,62 @@ require 'swagger_helper'
 
 describe 'Blogs API' do
 
-  path '/blogs' do
-
-    post 'Creates a blog' do
-      tags 'Blogs'
+  path '/authors' do
+    post 'Creates an author' do
+      tags 'Authors'
       consumes 'application/json'
       parameter name: :blog, in: :body, schema: {
         type: :object,
         properties: {
-          title: { type: :string },
-          content: { type: :string }
+          name: { type: :string },
+          surname: { type: :string },
+          email: { type: :string },
+          locale: { type: :string, default: 'ru || en' }
         },
-        required: [ 'title', 'content' ]
+        required: [ 'name', 'surname' 'email' ]
       }
 
-      response '201', 'blog created' do
-        let(:blog) { { title: 'foo', content: 'bar' } }
+      response '201', 'Author created' do
+        let(:author) { { name: 'foo', surname: 'bar' } }
         run_test!
       end
 
-      response '422', 'invalid request' do
-        let(:blog) { { title: 'foo' } }
+      response '403', 'Invalid permission rule' do
+        let(:author) { { name: 'foo', surname: 'bar' } }
+        run_test!
+      end
+
+      response '500', 'Invalid permission rule' do
+        let(:author) { { name: 'foo', surname: 'bar' } }
         run_test!
       end
     end
   end
 
-  path '/blogs/{id}' do
+  path '/authors/{id}' do
 
-    get 'Retrieves a blog' do
-      tags 'Blogs', 'Another Tag'
+    delete 'Delete an author' do
+      tags 'Authors'
       produces 'application/json', 'application/xml'
       parameter name: :id, in: :path, type: :string
-      request_body_example value: { some_field: 'Foo' }, name: 'basic', summary: 'Request example description'
 
-      response '200', 'blog found' do
-        schema type: :object,
-               properties: {
-                 id: { type: :integer },
-                 title: { type: :string },
-                 content: { type: :string }
-               },
-               required: [ 'id', 'title', 'content' ]
-
-        let(:id) { Blog.create(title: 'foo', content: 'bar').id }
+      response '200', 'Author delete' do
+        let(:id) { 1 }
         run_test!
       end
 
-      response '404', 'blog not found' do
+      response '404', 'Author not found' do
         let(:id) { 'invalid' }
         run_test!
       end
 
-      response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+      response '403', 'Invalid permission rule' do
+        let(:author) { { name: 'foo', surname: 'bar' } }
+        run_test!
+      end
+
+      response '500', 'Invalid permission rule' do
+        let(:author) { { name: 'foo', surname: 'bar' } }
         run_test!
       end
     end

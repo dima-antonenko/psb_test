@@ -16,13 +16,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.uuid "user_id"
-    t.uuid "expertise_ids", default: [], null: false, array: true
-    t.uuid "liked_user_ids", default: [], null: false, array: true
-    t.uuid "disliked_user_ids", default: [], null: false, array: true
+    t.integer "user_id"
+    t.integer "expertise_ids", default: [], null: false, array: true
+    t.integer "liked_user_ids", default: [], null: false, array: true
+    t.integer "disliked_user_ids", default: [], null: false, array: true
     t.integer "total_views", default: 1, null: false
     t.integer "reviews_count", default: 0, null: false
     t.integer "appeals_count", default: 0, null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
-  create_table "expertises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "expertises", force: :cascade do |t|
     t.string "title"
     t.boolean "deleted", default: false
     t.datetime "created_at", null: false
@@ -47,10 +47,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   end
 
   create_table "network_logs", force: :cascade do |t|
-    t.uuid "user_id"
+    t.integer "user_id"
     t.string "event_type", null: false
     t.string "logable_type"
-    t.uuid "logable_id"
+    t.integer "logable_id"
     t.string "ip"
     t.string "user_agent"
     t.datetime "created_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   end
 
   create_table "support_requests", force: :cascade do |t|
-    t.uuid "user_id"
+    t.integer "user_id"
     t.string "name"
     t.string "email"
     t.text "message"
@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.index ["viewed"], name: "index_support_requests_on_viewed"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -113,7 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
 
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
-    t.uuid "item_id", null: false
+    t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
     t.text "object"

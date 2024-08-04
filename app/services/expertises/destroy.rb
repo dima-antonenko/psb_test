@@ -36,8 +36,15 @@ module Expertises
                                       logable_id: expertise.id)
       end
       expertise.reload
-
+      remove_from_related_courses!
       expertise
+    end
+
+    def remove_from_related_courses!
+      expertise.courses.select(:id, :expertise_ids).each do |c|
+        c.expertise_ids.delete(expertise)
+        c.save
+      end
     end
   end
 end

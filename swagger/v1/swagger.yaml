@@ -4,36 +4,42 @@ info:
   title: API V1
   version: v1
 paths:
-  "/blogs":
+  "/authors":
     post:
-      summary: Creates a blog
+      summary: Creates an author
       tags:
-      - Blogs
+      - Authors
       parameters: []
       responses:
         '201':
-          description: blog created
-        '422':
-          description: invalid request
+          description: Author created
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                title:
+                name:
                   type: string
-                content:
+                surname:
                   type: string
+                email:
+                  type: string
+                locale:
+                  type: string
+                  default: ru || en
               required:
-              - title
-              - content
-  "/blogs/{id}":
-    get:
-      summary: Retrieves a blog
+              - name
+              - surnameemail
+  "/authors/{id}":
+    delete:
+      summary: Retrieves a author
       tags:
-      - Blogs
-      - Another Tag
+      - Authors
       parameters:
       - name: id
         in: path
@@ -42,40 +48,13 @@ paths:
           type: string
       responses:
         '200':
-          description: blog found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
-                required:
-                - id
-                - title
-                - content
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
-                required:
-                - id
-                - title
-                - content
+          description: Author delete
         '404':
-          description: blog not found
-        '406':
-          description: unsupported accept header
+          description: Author not found
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
 servers:
 - url: https://{defaultHost}
   variables:

@@ -15,7 +15,7 @@ RSpec.describe Api::V1::AuthorsController, type: :request do
           expect(author.network_logs.size).to eq(1)
 
           log = author.network_logs.first
-          expect(log.user_id).to eq(author.id)
+          expect(log.user_id).to eq(user.id)
           expect(log.event_type).to eq('create_author')
           expect(log.logable_id).to eq(author.id)
           expect(log.ip).not_to be_nil

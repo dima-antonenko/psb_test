@@ -5,7 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
     enable_extension 'uuid-ossp'
     enable_extension 'pgcrypto'
 
-    create_table :users, id: :uuid do |t|
+    create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

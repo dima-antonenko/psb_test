@@ -19,7 +19,7 @@ RSpec.describe Api::V1::AuthorsController, type: :request do
 
 
         log = author.network_logs.last
-        expect(log.user_id).to eq(author.id)
+        expect(log.user_id).to eq(user.id)
         expect(log.event_type).to eq('update_author')
         expect(log.logable_id).to eq(author.id)
         expect(log.ip).not_to be_nil
