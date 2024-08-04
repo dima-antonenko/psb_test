@@ -2,7 +2,7 @@ class CourseBlueprint < Blueprinter::Base
   identifier :id
   association :expertises, blueprint: ExpertiseBlueprint
 
-  fields :title, :description
+  fields :title, :description, :deleted
 
   field :author do |course|
     if course.user
