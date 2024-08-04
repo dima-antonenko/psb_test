@@ -18,6 +18,12 @@ Rails.application.routes.draw do
         resources :authors
         resources :courses
         resources :expertises
+
+        resources :votes, only: [] do
+          post :like, on: :collection
+          post :dislike, on: :collection
+          post :unlike, on: :collection
+        end
       end
     end
   end
