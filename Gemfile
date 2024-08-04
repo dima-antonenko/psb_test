@@ -108,3 +108,5 @@ gem 'factory_bot_rails'
 # documentation
 gem 'rswag-api'
 gem 'rswag-ui'
+
+gem 'pg_search', '~> 2.3', '>= 2.3.2'

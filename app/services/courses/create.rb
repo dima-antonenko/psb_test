@@ -43,6 +43,8 @@ module Courses
                                    logable_id: course.id)
       end
       course.reload
+
+      Courses::GenerateSearchMetaData.new(course).call
       course
     end
   end

@@ -4,6 +4,8 @@ class CreateCourses < ActiveRecord::Migration[7.1]
       t.string :title, index: true
       t.string :description, index: true
 
+      t.text :search_meta_data
+
       t.integer :user_id, index: true
       t.integer :expertise_ids,    index: true, null: false, array: true, default: []
       t.integer :liked_user_ids,    index: true, null: false, array: true, default: []

@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.text "search_meta_data"
     t.integer "user_id"
     t.integer "expertise_ids", default: [], null: false, array: true
     t.integer "liked_user_ids", default: [], null: false, array: true
