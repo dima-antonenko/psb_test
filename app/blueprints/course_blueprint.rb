@@ -16,6 +16,7 @@ class CourseBlueprint < Blueprinter::Base
     end
   end
 
+  # когда будут картинки
   # field :attachments do |course|
   #   if course.attachments.attached?
   #     course.attachments

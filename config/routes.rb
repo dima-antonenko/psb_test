@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-
+  get '/', to: redirect('/api-docs')
 
   constraints format: :json do
     namespace :api, defaults: { format: 'json' } do
