@@ -37,7 +37,7 @@ paths:
               - surnameemail
   "/authors/{id}":
     delete:
-      summary: Retrieves a author
+      summary: Delete an author
       tags:
       - Authors
       parameters:
@@ -55,6 +55,207 @@ paths:
           description: Invalid permission rule
         '500':
           description: Invalid permission rule
+  "/api/v1/authors":
+    patch:
+      summary: Update author
+      tags:
+      - Authors
+      parameters: []
+      responses:
+        '200':
+          description: Author update
+        '422':
+          description: Invalid request
+        '404':
+          description: Author not found
+        '500':
+          description: Forbidden request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                surname:
+                  type: string
+                email:
+                  type: string
+                locale:
+                  type: string
+                  default: ru || en
+              required:
+              - name
+              - surnameemail
+  "/courses":
+    post:
+      summary: Creates an course
+      tags:
+      - Courses
+      parameters: []
+      responses:
+        '201':
+          description: Course created
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                title:
+                  type: string
+                description:
+                  type: string
+                expertise_ids:
+                  type: string
+                  default: "[]"
+              required:
+              - user_id
+              - titledescription
+              - expertise_ids
+  "/courses/{id}":
+    delete:
+      summary: Delete an course
+      tags:
+      - Courses
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Course delete
+        '404':
+          description: Course not found
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
+  "/api/v1/courses":
+    patch:
+      summary: Update course
+      tags:
+      - Courses
+      parameters: []
+      responses:
+        '200':
+          description: Course update
+        '422':
+          description: Invalid request
+        '404':
+          description: Course not found
+        '500':
+          description: Forbidden request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                title:
+                  type: string
+                description:
+                  type: string
+                expertise_ids:
+                  type: string
+                  default: "[]"
+              required:
+              - user_id
+              - titledescription
+              - expertise_ids
+  "/api/v1/courses/simple_search":
+    get:
+      summary: Search product
+      tags:
+      - Courses
+      parameters:
+      - name: q
+        in: path
+        required: true
+        schema:
+          type: id
+      responses:
+        '200':
+          description: Product found
+  "/expertises":
+    post:
+      summary: Creates an expertise
+      tags:
+      - Expertises
+      parameters: []
+      responses:
+        '201':
+          description: Expertise created
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+              required:
+              - title
+  "/expertises/{id}":
+    delete:
+      summary: Delete an expertise
+      tags:
+      - Expertises
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Expertis delete
+        '404':
+          description: Expertis not found
+        '403':
+          description: Invalid permission rule
+        '500':
+          description: Invalid permission rule
+  "/api/v1/expertises":
+    patch:
+      summary: Update expertise
+      tags:
+      - Expertises
+      parameters: []
+      responses:
+        '200':
+          description: Expertis update
+        '422':
+          description: Invalid request
+        '404':
+          description: Expertis not found
+        '500':
+          description: Forbidden request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+              required:
+              - title
 servers:
 - url: https://{defaultHost}
   variables:

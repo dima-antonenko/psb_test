@@ -1,7 +1,7 @@
 # spec/requests/blogs_spec.rb
 require 'swagger_helper'
 
-describe 'Blogs API' do
+describe 'Authors API' do
 
   path '/authors' do
     post 'Creates an author' do
@@ -59,6 +59,40 @@ describe 'Blogs API' do
 
       response '500', 'Invalid permission rule' do
         let(:author) { { name: 'foo', surname: 'bar' } }
+        run_test!
+      end
+    end
+  end
+
+
+  path '/api/v1/authors' do
+    patch 'Update author' do
+      tags 'Authors'
+      consumes 'application/json'
+      parameter name: :author, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          surname: { type: :string },
+          email: { type: :string },
+          locale: { type: :string, default: 'ru || en' }
+        },
+        required: [ 'name', 'surname' 'email' ]
+      }
+
+      response '200', 'Author update' do
+        run_test!
+      end
+
+      response '422', 'Invalid request' do
+        run_test!
+      end
+
+      response '404', 'Author not found' do
+        run_test!
+      end
+
+      response '500', 'Forbidden request' do
         run_test!
       end
     end
