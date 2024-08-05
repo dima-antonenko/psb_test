@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.string :name, index: true
       t.string :surname, index: true
       t.string :language, index: true, null: false, default: 'ru'
-      t.integer :rating, index: false, null: false, default: 0
+      t.integer :rating, index: false, null: false, default: 10
       t.integer :appeals_count, index: false, null: false, default: 0
 
       t.boolean :full_access, index: true, null: false, default: false
@@ -44,6 +44,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       # t.datetime :locked_at
 
       t.boolean :deleted, index: true, null: false, default: false
+      t.integer :liked_user_ids,    index: true, null: false, array: true, default: []
+      t.integer :disliked_user_ids, index: true, null: false, array: true, default: []
+
       t.timestamps null: false
     end
 

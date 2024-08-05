@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.string "name"
     t.string "surname"
     t.string "language", default: "ru", null: false
-    t.integer "rating", default: 0, null: false
+    t.integer "rating", default: 10, null: false
     t.integer "appeals_count", default: 0, null: false
     t.boolean "full_access", default: false, null: false
     t.integer "sign_in_count", default: 0, null: false
@@ -101,12 +101,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.boolean "deleted", default: false, null: false
+    t.integer "liked_user_ids", default: [], null: false, array: true
+    t.integer "disliked_user_ids", default: [], null: false, array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["deleted"], name: "index_users_on_deleted"
+    t.index ["disliked_user_ids"], name: "index_users_on_disliked_user_ids"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["full_access"], name: "index_users_on_full_access"
     t.index ["language"], name: "index_users_on_language"
+    t.index ["liked_user_ids"], name: "index_users_on_liked_user_ids"
     t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["surname"], name: "index_users_on_surname"

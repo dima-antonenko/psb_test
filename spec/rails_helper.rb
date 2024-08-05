@@ -128,3 +128,28 @@ def destroy_course(user, course_id)
   delete api_v1_course_path(course_id), headers: auth_headers(user)
   JSON.parse(response.body)
 end
+
+
+def set_like(user,  extra_params = nil)
+  params = { item_type: '',
+             item_id: '' }
+  params.merge!(extra_params) if extra_params
+  post like_api_v1_votes_path, params: { vote: params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def set_dislike(user, extra_params = nil)
+  params = { item_type: '',
+             item_id: '' }
+  params.merge!(extra_params) if extra_params
+  post dislike_api_v1_votes_path, params: { vote: params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
+def unlike(user, extra_params = nil)
+  params = { item_type: 'Review',
+             item_id: '' }
+  params.merge!(extra_params) if extra_params
+  post unlike_api_v1_votes_path, params: { vote: params }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
