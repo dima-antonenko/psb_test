@@ -129,6 +129,11 @@ def destroy_course(user, course_id)
   JSON.parse(response.body)
 end
 
+def simple_search_course(q)
+  get simple_search_api_v1_courses_path, params: { q: q }, headers: auth_headers(user)
+  JSON.parse(response.body)
+end
+
 
 def set_like(user,  extra_params = nil)
   params = { item_type: '',

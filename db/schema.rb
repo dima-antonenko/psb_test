@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -35,6 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_03_072002) do
     t.index ["disliked_user_ids"], name: "index_courses_on_disliked_user_ids"
     t.index ["expertise_ids"], name: "index_courses_on_expertise_ids"
     t.index ["liked_user_ids"], name: "index_courses_on_liked_user_ids"
+    t.index ["search_meta_data"], name: "index_courses_on_search_meta_data"
     t.index ["title"], name: "index_courses_on_title"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     namespace :api, defaults: { format: 'json' } do
       namespace :v1 do
         resources :authors
-        resources :courses
+        resources :courses do
+          get :simple_search, on: :collection
+        end
         resources :expertises
 
         resources :votes, only: [] do

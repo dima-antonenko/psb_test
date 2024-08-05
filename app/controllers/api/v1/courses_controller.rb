@@ -17,6 +17,11 @@ class Api::V1::CoursesController < ApplicationController
     render_item(result, serializer: 'CourseBlueprint')
   end
 
+  def simple_search
+    result = Courses::SimpleSearch.new(params[:q]).call
+    render_collection(result, serializer: 'CourseBlueprint')
+  end
+
   private
 
   def get_course

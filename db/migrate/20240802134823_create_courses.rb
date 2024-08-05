@@ -1,10 +1,12 @@
 class CreateCourses < ActiveRecord::Migration[7.1]
   def change
+    enable_extension "pg_trgm"
+
     create_table :courses do |t|
       t.string :title, index: true
       t.string :description, index: true
 
-      t.text :search_meta_data
+      t.text :search_meta_data, index: true
 
       t.integer :user_id, index: true
       t.integer :expertise_ids,    index: true, null: false, array: true, default: []

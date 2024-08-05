@@ -13,7 +13,7 @@ class Course < ApplicationRecord
     Expertise.visible.where(id: self.expertise_ids).limit(1000)
   end
 
-  pg_search_scope :search,
+  pg_search_scope :simple_search,
                   against: [:search_meta_data],
                   using: { trigram: { word_similarity: true, threshold: 0.5 } }
 end
