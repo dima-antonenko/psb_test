@@ -8,6 +8,7 @@ module Courses
     end
 
     def call
+      # добавить индексер, который вызывается когда добавляется/удаляется экспертиза
       course.update_attribute(:search_meta_data, meta_data)
     end
 

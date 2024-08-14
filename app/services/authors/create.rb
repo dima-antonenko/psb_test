@@ -32,6 +32,9 @@ module Authors
                                                   last_sign_in_ip: request.remote_ip }))
     end
 
+    # разъеденить логику авторов и пользователей
+    # добавить ролевую модель в пользователи: автор, редактор
+    # Добавить ActiveModel STI
     def save_author(author, request)
       return author.errors unless author.valid?
       ActiveRecord::Base.transaction do

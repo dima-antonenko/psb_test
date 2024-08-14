@@ -40,6 +40,7 @@ module Expertises
       expertise
     end
 
+    # в перспективе перенести в CRON
     def remove_from_related_courses!
       expertise.courses.select(:id, :expertise_ids).each do |c|
         c.expertise_ids.delete(expertise)

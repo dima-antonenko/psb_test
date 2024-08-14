@@ -30,6 +30,7 @@ module Courses
     def assign!
       course.assign_attributes(params)
       course.expertise_ids = Expertise.visible.where(id: params[:expertise_ids]).pluck(:id)
+      # в перспективе возможно нужно будет использовать сложные блокировки
     end
 
     def save_course(course, request)
@@ -44,7 +45,7 @@ module Courses
       end
       course.reload
 
-      Courses::GenerateSearchMetaData.new(course).call
+      Courses::GenerateSearchMetaData.new(course).call # в перспективе вызывать в фоне
       course
     end
   end
